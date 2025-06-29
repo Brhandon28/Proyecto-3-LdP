@@ -33,7 +33,8 @@ public class LeerArchivo {
                     } else if (datos[0].trim().equals("Proveedores")) {
                         int proveedores = Integer.parseInt(datos[1].trim());
                     }
-
+                }
+            }
                 
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
