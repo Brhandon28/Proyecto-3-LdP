@@ -30,6 +30,10 @@ public class Barrel {
         // }
     }
 
+    public void print() {
+        System.out.println("Barril ID: " + id + ", Capacidad: " + capacity + ", Cerveza actual: " + beer);
+    }
+
     // public void vaciar(int cantidad) {
     // if (beer - cantidad >= 0) {
     // beer -= cantidad;
