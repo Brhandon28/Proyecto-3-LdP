@@ -1,5 +1,5 @@
-A, 10, 10
+A, 10, 17
 B, 7, 0
-C, 3, 0
+C, 3, 5
 Estudiantes, 34
 Proveedores, 3
