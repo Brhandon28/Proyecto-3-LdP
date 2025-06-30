@@ -3,6 +3,14 @@ public class Barrel {
     private int capacity;
     private int beer;
 
+    public int excessBarrel() {
+        if (beer > capacity) {
+            return beer - capacity;
+        }
+
+        return 0;
+    }
+
     public Barrel(String id, int capacity, int beer) {
         this.id = id;
         this.capacity = capacity;
@@ -22,12 +30,11 @@ public class Barrel {
     }
 
     public void addBeer(int cantidad) {
-        if (beer + cantidad <= capacity) {
-            beer += cantidad;
-        }
-        // else {
-        // // Crear funcion para traspasar exceso
-        // }
+        beer += cantidad;
+    }
+
+    public void removeBeer(int cantidad) {
+        beer -= cantidad;
     }
 
     public void print() {
