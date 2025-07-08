@@ -10,7 +10,6 @@ public class Estudiante implements Runnable {
   private int age;
   private int ticket;
 
-  // Atributo static con 16 nombres de jugadores de fútbol
   public static ArrayList<String> nombres = new ArrayList<>(Arrays.asList(
           "Lionel", "Pepe", "Neymar", "Roberto", "Kevin", "Ronald",
           "Luis", "Virgil", "Karim", "Luka", "James", "Harry",

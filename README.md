@@ -1,4 +1,4 @@
-# Proyecto 3 - LdP: Draft Beer Party 🍻
+# Proyecto 3 - LdP: Draft Beer Party 🍺🍻
 
 ## Descripción General
 
@@ -108,7 +108,7 @@ Implementa la clase monitor que gestiona y sincroniza el sistema de barriles.
 
 ## Consideraciones
 
-- El archivo de entrada debe estar en el mismo directorio que la clase principal.
+- El archivo de entrada debe estar en el mismo directorio src.
 - Si el número de proveedores es menor o igual a cero, los estudiantes se ejecutan mientras haya cerveza en los barriles. Al agotarse, los hilos estudiantes terminan su ejecución.
 
 ---
@@ -127,17 +127,13 @@ Proveedores, 3
 
 ## Ejecución
 
-Compila y ejecuta el programa indicando el archivo de entrada:
+Para una mayor comodidad y automatización del proceso, se ha provisto un archivo Makefile. Este archivo permite compilar y ejecutar el programa de la siguiente manera:
 
 ```sh
-javac -d bin src/Proyecto3/*.java
-java -cp bin Proyecto3.Main formato.txt
+make
+make run FILE=prueba1.txt
 ```
 
----
-
-## Créditos
-
-Desarrollado por Ronald y Brhandon para la materia de Lenguajes de Programación
+Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar
 
 ---
