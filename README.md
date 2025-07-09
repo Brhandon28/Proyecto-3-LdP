@@ -85,6 +85,7 @@ Implementa el sistema que contiene los tres barriles. Modela el comportamiento d
 - **initialOverflow:** Inicializa los barriles y gestiona transferencias y pérdidas por desborde.
 - **transferBeer:** Ejecuta la lógica de transferencia entre barriles. Usado por `initialOverflow` y `fillBarrels`. Retorna la cantidad de cerveza perdida por desborde.
 - **serveBeer:** Ejecuta el proceso de servir las cervezas solicitadas. Retorna la cantidad que se logró servir.
+- **calcQuantBeer:** Suma todas las capacidades de los barriles y utiliza ese valor para hacer el cálculo de la cantidad aleatoria de cerveza que va a agregar un proveedor.
 - **evaluateQuantity:** Retorna verdadero si alguno de los tres barriles tiene suficiente contenido para satisfacer la cantidad solicitada completamente.
 - **getOptimalChoice:** Dada una cantidad de cerveza, decide por cuál barril es más eficiente servirla, basándose en el que tenga más contenido.
 - **aOrC:** Determina si se debe transferir la cerveza al barril "A" o "C" cuando hay desborde en "B", aplicando reglas de transferencia.
@@ -108,9 +109,12 @@ Implementa la clase monitor que gestiona y sincroniza el sistema de barriles.
 
 ## Consideraciones
 
+- La entrada debe cumplir exactamente el formato de ejemplo, cualquier alteración al mismo se tomará como falla. 
+- Los barriles no pueden tener 0 de capacidad.
 - El archivo de entrada debe estar en el mismo directorio src.
 - Si el número de proveedores es menor o igual a cero, los estudiantes se ejecutan mientras haya cerveza en los barriles. Al agotarse, los hilos estudiantes terminan su ejecución.
-
+- Los proveedores añaden un cantidad de cerveza aleatoria entre 1 y la suma total de las capacidades de los barriles.
+- Los estudiantes pueden tener hasta 30 tickets máximo, garantizando así un enfoque más realista
 ---
 
 ## Ejemplo de Formato de Archivo de Entrada

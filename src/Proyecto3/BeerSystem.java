@@ -1,6 +1,7 @@
 package Proyecto3;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class BeerSystem {
     private Barrel[] barrels = new Barrel[3];
@@ -32,26 +33,29 @@ public class BeerSystem {
             if (barrels[0].hasOverflow()) {
                 lostBeer += transferBeer("A", barrels[0].getOverflow());
                 /*
-                if(lostBeer > 0) {
-                    //System.out.println("Barril A dice que lostBeer es: " + lostBeer);
-                }
-                //*/
+                 * if(lostBeer > 0) {
+                 * //System.out.println("Barril A dice que lostBeer es: " + lostBeer);
+                 * }
+                 * //
+                 */
                 barrels[0].setContent(barrels[0].getCapacity()); // Aseguramos que el barril A no tenga overflow
             } else if (barrels[1].hasOverflow()) {
                 lostBeer += transferBeer("B", barrels[1].getOverflow());
                 /*
-                if(lostBeer > 0) {
-                    //System.out.println("Barril B dice que lostBeer es: " + lostBeer);
-                }
-                //*/
+                 * if(lostBeer > 0) {
+                 * //System.out.println("Barril B dice que lostBeer es: " + lostBeer);
+                 * }
+                 * //
+                 */
                 barrels[1].setContent(barrels[1].getCapacity()); // Aseguramos que el barril B no tenga overflow
             } else if (barrels[2].hasOverflow()) {
                 lostBeer += transferBeer("C", barrels[2].getOverflow());
                 /*
-                if(lostBeer > 0) {
-                    System.out.println("Barril C dice que lostBeer es: " + lostBeer);
-                }
-                //*/
+                 * if(lostBeer > 0) {
+                 * System.out.println("Barril C dice que lostBeer es: " + lostBeer);
+                 * }
+                 * //
+                 */
                 barrels[2].setContent(barrels[2].getCapacity()); // Aseguramos que el barril C no tenga overflow
             } else {
                 overflow = false; // Si no hay desbordes, salimos del bucle
@@ -81,20 +85,20 @@ public class BeerSystem {
                         excess = barrels[1].addBeer(excess);
                         beerLost = transferBeer("B", excess);
                     } else if (barrels[1].isFull() && (!barrels[0].isFull() ||
-                                                           !barrels[2].isFull())) {
-                        if(barrelId.equals("A") && barrels[0].isFull()) {
-                            if(barrels[0].getContent() > barrels[2].getContent()){
+                            !barrels[2].isFull())) {
+                        if (barrelId.equals("A") && barrels[0].isFull()) {
+                            if (barrels[0].getContent() > barrels[2].getContent()) {
                                 excess = barrels[2].addBeer(excess);
                                 beerLost = transferBeer("C", excess);
                             }
-                        }else if(barrelId.equals("C") && barrels[2].isFull()) {
-                            if(barrels[2].getContent() > barrels[0].getContent()){
+                        } else if (barrelId.equals("C") && barrels[2].isFull()) {
+                            if (barrels[2].getContent() > barrels[0].getContent()) {
                                 excess = barrels[0].addBeer(excess);
                                 beerLost = transferBeer("A", excess);
                             }
                         }
 
-                    }else {
+                    } else {
                         beerLost += excess;
                         excess = 0;
                     }
@@ -122,40 +126,41 @@ public class BeerSystem {
     private int aOrC() {
 
         // Barril "A" tiene espacio y el barril "C" esta full
-        if(!barrels[0].isFull() && barrels[2].isFull()) {
+        if (!barrels[0].isFull() && barrels[2].isFull()) {
             return 0;
 
-        // Barril "C" tiene espacio y el barril "A" esta full
-        }else if(barrels[0].isFull() && !barrels[2].isFull()) {
+            // Barril "C" tiene espacio y el barril "A" esta full
+        } else if (barrels[0].isFull() && !barrels[2].isFull()) {
             return 2;
-        // Ninguno de los dos esta full
-        }else if(!barrels[0].isFull() && !barrels[2].isFull()){
+            // Ninguno de los dos esta full
+        } else if (!barrels[0].isFull() && !barrels[2].isFull()) {
             // Retorna al que le falte mas cerveza
-            if(barrels[0].beersToReachCap() >= barrels[2].beersToReachCap()){
+            if (barrels[0].beersToReachCap() >= barrels[2].beersToReachCap()) {
                 return 0;
-            }else {
+            } else {
                 return 2;
             }
-        }else {
+        } else {
             return 0;
         }
 
     }
 
-    private int calcQuantBeer() {
-        int totalBeer = 0;
+    // Calcula una cantidad aleatoria de cerveza entre 1 y la suma
+    // de las capacidades de los barriles
+    public int calcQuantBeer() {
 
-        int beersToReachCapA = barrels[0].beersToReachCap();
-        int beersToReachCapB = barrels[1].beersToReachCap();
-        int beersToReachCapC = barrels[2].beersToReachCap();
+        // Suma de las capacidades de los barriles
+        int totalBeer = barrels[0].getCapacity() + barrels[1].getCapacity() + barrels[2].getCapacity();
 
-        totalBeer = beersToReachCapA + beersToReachCapB + beersToReachCapC;
+        // Genera un numero aleatorio entre 1 y la suma de las capacidades
+        int randQuantity = (new Random()).nextInt(totalBeer) + 1;
 
-        return totalBeer;
+        return randQuantity;
     }
 
     public int fillBarrels(int totalBeer) {
-        //int totalBeer = calcQuantBeer();
+        // int totalBeer = calcQuantBeer();
         int barrel = aOrC();
         int excess;
         int lostBeer = 0;
@@ -285,14 +290,14 @@ public class BeerSystem {
     // Si los tres barriles tienen capacidad cero (0) entonces
     // no se pueden llenar ni tampoco se puede servir por ningun barril
     public boolean invalidBarrelsState() {
-        return  (barrels[0].getCapacity() == 0 &&
+        return (barrels[0].getCapacity() == 0 &&
                 barrels[1].getCapacity() == 0 &&
                 barrels[2].getCapacity() == 0);
     }
 
     @Override
     public String toString() {
-        return  "-----------\n" +
+        return "-----------\n" +
                 " Barriles:\n" +
                 "-----------\n" +
                 Arrays.toString(barrels) + "\n";
