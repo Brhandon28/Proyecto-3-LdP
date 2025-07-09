@@ -135,7 +135,7 @@ Para una mayor comodidad y automatización del proceso, se ha provisto un archiv
 
 ```sh
 make
-make run FILE=prueba1.txt
+make run FILE=tests/prueba1.txt
 ```
 
 Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar
@@ -146,15 +146,15 @@ Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar
 
 Se cuenta con un directorio "tests" donde están almacenados algunos archivos con casos de prueba válidos e inválidos (donde la entrada es incorrecta). A continuación se muestra la entrada y resultado de 3 de estos casos de prueba, recuerde que la ejecución depende de la aleatoriedad por lo tanto los resultados pueden variar.
 
-### prueba7
+### Archivo prueba7
 
 Entrada
 
 ```
-A, 20, 15
-B, 30, 25
-C, 25, 10
-Estudiantes, 10
+A, 300, 0
+B, 100, 50
+C, 200, 0
+Estudiantes, 34
 Proveedores, 3
 ```
 
@@ -168,4 +168,51 @@ Se termina la fiesta.
 [Barril {Id: 'A', Capacidad: 300, Contenido: 300}, Barril {Id: 'B', Capacidad: 100, Contenido: 100}, Barril {Id: 'C', Capacidad: 200, Contenido: 200}]
 
 El sistema de barriles reporta una perdida por desborde de: 11649
+```
+
+### Archivo prueba10
+
+Entrada
+
+```
+A, 10, 7
+B, 5, 1
+C, 6, 10
+Estudiantes, 34
+Proveedores, 2
+8
+```
+
+Salida
+
+```sh
+Error: El archivo no posee el formato correcto.
+```
+
+### Archivo prueba5
+
+Entrada
+
+```
+B, 0, 1
+C, 0, 1
+A, 0, 5
+Estudiantes, 30
+Proveedores, 1
+```
+
+Salida
+
+```sh
+Nro. de Estudiantes: 30
+Nro. de Proveedores: 1
+----------------------------------------
+--------------------------------------
+Lo sentimos, no es posible realizar la fiesta porque el sistema de barriles presenta una falla que no permite servir las cervezas.
+--------------------------------------
+-----------
+ Barriles:
+-----------
+[Barril {Id: 'A', Capacidad: 0, Contenido: 0}, Barril {Id: 'B', Capacidad: 0, Contenido: 0}, Barril {Id: 'C', Capacidad: 0, Contenido: 0}]
+Desborde: 7
 ```
