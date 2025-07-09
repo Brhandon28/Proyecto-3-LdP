@@ -1,7 +1,5 @@
 package Proyecto3;
 
-import java.util.Random;
-
 // Monitor
 public class DraftBeerParty {
     private BeerSystem barrelSystem;
@@ -42,7 +40,7 @@ public class DraftBeerParty {
 
     public synchronized int consume(int quantity) throws InterruptedException {
 
-        if (this.getSuppliers() == 0 && barrelSystem.allBarrelsEmpty()){
+        if (this.getSuppliers() == 0 && barrelSystem.allBarrelsEmpty()) {
             notifyAll();
             return 0;
         }

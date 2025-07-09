@@ -132,9 +132,7 @@ public class BeerSystem {
         int totalBeer = barrels[0].getCapacity() + barrels[1].getCapacity() + barrels[2].getCapacity();
 
         // Genera un numero aleatorio entre 1 y la suma de las capacidades
-        int randQuantity = (new Random()).nextInt(totalBeer) + 1;
-
-        return randQuantity;
+        return (new Random()).nextInt(totalBeer) + 1;
     }
 
     public int fillBarrels(int totalBeer) {

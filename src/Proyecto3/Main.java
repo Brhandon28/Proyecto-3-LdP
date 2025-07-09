@@ -9,6 +9,9 @@ public class Main {
             System.err.println("Error: Debe ingresar nombre y ruta del archivo de entrada.");
             return;
         } else {
+
+            BufferedReader reader = null;
+
             try {
                 // Nro de estudiantes y proveedores que se leeran del archivo
                 int nEstudiantes = 0, nProveedores = 0;
@@ -20,7 +23,7 @@ public class Main {
                 // Nombre de archivo relativo a la carpeta principal del proyecto
                 String inputFile = args[0];
 
-                BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                reader = new BufferedReader(new FileReader(inputFile));
 
                 int cont = 0;
                 while ((line = reader.readLine()) != null) {
@@ -122,8 +125,6 @@ public class Main {
                 }
 
 
-                reader.close();
-
                 System.out.println("Nro. de Estudiantes: " + nEstudiantes + "\n" +
                                    "Nro. de Proveedores: " + nProveedores + "\n" +
                                     "----------------------------------------");
@@ -215,6 +216,15 @@ public class Main {
             } catch (IOException e) {
                 System.err.println("Ocurrió un Error al intentar leer el archivo.");
                 // e.printStackTrace();
+            } finally {
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                }catch (IOException e) {
+                    System.err.println("Ocurrió un Error al intentar cerrar el archivo.");
+                }
+
             }
 
         }

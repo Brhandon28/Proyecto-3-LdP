@@ -29,7 +29,7 @@ public class Estudiante implements Runnable {
 
     this.age = rand.nextInt(25) + 16; // Edad entre 16 y 40
 
-    this.ticket = rand.nextInt(31) + 1; // Ticket entre 1 y 30
+    this.ticket = rand.nextInt(30) + 1; // Ticket entre 1 y 30
 
   }
 
@@ -59,10 +59,8 @@ public class Estudiante implements Runnable {
         while(getTicket() > 0) {
           // Estudiante pide una cantidad aleatoria de cervezas
           // entre 1 y la cantidad de tickets que tenga en ese momento
-          int order = (new Random()).nextInt(this.getTicket() + 1) + 1;
+          int order = (new Random()).nextInt(this.getTicket()) + 1;
 
-          //int quantity = getTicket();
-          //int consumedTickets = this.party.consume(order);
           this.party.consume(order);
 
           // Decrementa el numero de tickets
