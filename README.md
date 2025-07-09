@@ -145,7 +145,7 @@ Ejecutar dentro del directorio src
 make run FILE=tests/prueba1.txt
 ```
 
-Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar.
+_Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar_.
 
 ---
 
