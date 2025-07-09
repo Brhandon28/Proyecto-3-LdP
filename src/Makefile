@@ -3,7 +3,7 @@ JAVA=java
 SRC_DIR=Proyecto3
 OUT_DIR=out
 SRCS=$(wildcard $(SRC_DIR)/*.java)
-MAIN=Proyecto3.Proyecto3
+MAIN=Proyecto3.Main
 
 all:
 	$(JAVAC) -d $(OUT_DIR) $(SRCS)

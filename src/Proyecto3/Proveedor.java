@@ -14,7 +14,7 @@ public class Proveedor implements Runnable {
                 party.fillBarrelSystem();
 
                 // Se añade algo de espera aleatoria para la simulación
-                Thread.sleep((int)(Math.random() * 1500));
+                Thread.sleep((int)(Math.random() * 700));
             }
 
             System.out.println("Proveedor ("+ Thread.currentThread().getName() +"):  Finaliza su jornada y se retira.");

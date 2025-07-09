@@ -1,5 +1,7 @@
 package Proyecto3;
 
+import java.util.Random;
+
 // Monitor
 public class DraftBeerParty {
     private BeerSystem barrelSystem;
@@ -22,8 +24,7 @@ public class DraftBeerParty {
 
         if (!barrelSystem.allBarrelsFull()) {
             // El proveedor ingresa una cantidad aleatoria de cerveza
-            // al sistema entre 1 y la suma de las capacidades
-            // de los barriles.
+            // al sistema entre 1 y la suma de las capacidades de los barriles
             int quantity = barrelSystem.calcQuantBeer();
 
             int overflow = barrelSystem.fillBarrels(quantity);
@@ -41,6 +42,11 @@ public class DraftBeerParty {
 
     public synchronized int consume(int quantity) throws InterruptedException {
 
+        if (this.getSuppliers() == 0 && barrelSystem.allBarrelsEmpty()){
+            notifyAll();
+            return 0;
+        }
+
         // Si todos los barriles estan vacios debe esperar
         while (barrelSystem.allBarrelsEmpty()) {
             wait();
@@ -50,11 +56,6 @@ public class DraftBeerParty {
         int beersRemain = quantity - beers;
         // Mientras no se complete la cantidad de cervezas pedidas
         while (beersRemain > 0) {
-            /*
-             * System.out.println(Thread.currentThread().getName() +
-             * " beersRemain: " + beersRemain + "\n");
-             * //
-             */
 
             if (!barrelSystem.allBarrelsEmpty()) {
                 beers = barrelSystem.serveBeer(beersRemain);
@@ -78,7 +79,7 @@ public class DraftBeerParty {
 
         System.out.println("Soy " + Thread.currentThread().getName() +
                 ": 'pedi' " + quantity + ((quantity == 1) ? " cerveza " : " cervezas ") +
-                "y ya me sirvieron " + (beersRemain > 0 ? "todas las que pudieron.\n" : "todas.\n") +
+                "y ya me sirvieron " + (beersRemain > 0 ? "todas las que pudieron.\n" : "todas las que pedi.\n") +
                 this.barrelSystem.toString());
 
         // Si me quedaron cervezas pendientes actualiza nuevamente

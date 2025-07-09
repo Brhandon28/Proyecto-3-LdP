@@ -16,13 +16,8 @@ public class Main {
 
                 String line;
                 String columnDelimiter = ",";
-                // Nombre de archivo relativo a la carpeta principal del proyecto
 
-                // --------------------------------------
-                // TEMPORAL
-                // OJO: Quizas falta corregir la ruta de entrada del archivo para no
-                // tener que hardcodear "proyecto3" y que pueda conseguir
-                // cualquier ruta que se le ingrese.
+                // Nombre de archivo relativo a la carpeta principal del proyecto
                 String inputFile = args[0];
 
                 BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -34,7 +29,7 @@ public class Main {
                     // Data de los barriles (3 primeras lineas)
                     if (cont < 3) {
 
-                        if (data.length < 3) {
+                        if (data.length != 3) {
                             System.err.println("Error: El archivo no posee el formato correcto.");
                             return;
                         }
@@ -87,7 +82,7 @@ public class Main {
 
                     } else if (cont < 5) {
 
-                        if (data.length < 2) {
+                        if (data.length != 2) {
                             System.err.println("Error: El archivo no posee el formato correcto.");
                             return;
                         }
@@ -115,22 +110,23 @@ public class Main {
                             }
                         }
 
-                    } else {
-                        break;
                     }
 
                     cont++;
                 }
 
                 // Verifica que se hayan leido al menos 5 lineas del archivo de entrada
-                if (cont < 5) {
+                if (cont != 5) {
                     System.err.println("Error: El archivo no posee el formato correcto.");
                     return;
                 }
 
+
+                reader.close();
+
                 System.out.println("Nro. de Estudiantes: " + nEstudiantes + "\n" +
-                        "Nro. de Proveedores: " + nProveedores + "\n" +
-                        "----------------------------------------");
+                                   "Nro. de Proveedores: " + nProveedores + "\n" +
+                                    "----------------------------------------");
 
                 // 4. Se instancia el "sistema de barriles" y se gestiona el
                 //    posible desborde inicial.
@@ -140,8 +136,8 @@ public class Main {
                 if (bs.invalidBarrelsState()) {
                     System.err.println("--------------------------------------\n" +
                             "Lo sentimos, no es posible realizar la fiesta "+
-                            "porque el sistema de barriles presenta una falla que "+
-                            "no permite servir las cervezas.\n" +
+                                       "porque el sistema de barriles presenta una falla que "+
+                                       "no permite servir las cervezas.\n" +
                             "--------------------------------------");
                     System.out.println(bs + "Desborde: " + desborde);
                     return;
@@ -178,7 +174,7 @@ public class Main {
                 if(nEstudiantes > 0) {
                     estudiantes = new Thread[nEstudiantes];
                     System.out.println("Llegan a la fiesta los siguientes estudiantes:\n"+
-                            "-------------------------------------------------");
+                                      "-------------------------------------------------");
                     for (int i = 0; i < estudiantes.length; i++) {
                         Estudiante e = new Estudiante(party);
                         System.out.println((i+1) + ". " + e);

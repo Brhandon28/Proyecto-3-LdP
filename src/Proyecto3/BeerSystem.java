@@ -32,30 +32,12 @@ public class BeerSystem {
         while (overflow) {
             if (barrels[0].hasOverflow()) {
                 lostBeer += transferBeer("A", barrels[0].getOverflow());
-                /*
-                 * if(lostBeer > 0) {
-                 * //System.out.println("Barril A dice que lostBeer es: " + lostBeer);
-                 * }
-                 * //
-                 */
                 barrels[0].setContent(barrels[0].getCapacity()); // Aseguramos que el barril A no tenga overflow
             } else if (barrels[1].hasOverflow()) {
                 lostBeer += transferBeer("B", barrels[1].getOverflow());
-                /*
-                 * if(lostBeer > 0) {
-                 * //System.out.println("Barril B dice que lostBeer es: " + lostBeer);
-                 * }
-                 * //
-                 */
                 barrels[1].setContent(barrels[1].getCapacity()); // Aseguramos que el barril B no tenga overflow
             } else if (barrels[2].hasOverflow()) {
                 lostBeer += transferBeer("C", barrels[2].getOverflow());
-                /*
-                 * if(lostBeer > 0) {
-                 * System.out.println("Barril C dice que lostBeer es: " + lostBeer);
-                 * }
-                 * //
-                 */
                 barrels[2].setContent(barrels[2].getCapacity()); // Aseguramos que el barril C no tenga overflow
             } else {
                 overflow = false; // Si no hay desbordes, salimos del bucle
@@ -63,17 +45,14 @@ public class BeerSystem {
 
         }
 
-        System.out.println("\n**********************************************");
-        System.out.println("SE RESOLVIO EL DESBORDE DE LOS BARRILES");
-        System.out.println("**********************************************\n");
-
         // Actualiza la cantidad de perdida por desborde
         this.setBeerLost(lostBeer);
 
         return lostBeer;
     }
 
-    // Unfinished under construction
+    // Ejecuta toda la lógica de transferencia entre los barriles y
+    // retorna la cantidad de cerveza que se pierde por desborde
     public int transferBeer(String barrelId, int excess) {
         int beerLost = 0;
 
@@ -149,7 +128,6 @@ public class BeerSystem {
     // Calcula una cantidad aleatoria de cerveza entre 1 y la suma
     // de las capacidades de los barriles
     public int calcQuantBeer() {
-
         // Suma de las capacidades de los barriles
         int totalBeer = barrels[0].getCapacity() + barrels[1].getCapacity() + barrels[2].getCapacity();
 
@@ -290,8 +268,8 @@ public class BeerSystem {
     // Si los tres barriles tienen capacidad cero (0) entonces
     // no se pueden llenar ni tampoco se puede servir por ningun barril
     public boolean invalidBarrelsState() {
-        return (barrels[0].getCapacity() == 0 &&
-                barrels[1].getCapacity() == 0 &&
+        return (barrels[0].getCapacity() == 0 ||
+                barrels[1].getCapacity() == 0 ||
                 barrels[2].getCapacity() == 0);
     }
 

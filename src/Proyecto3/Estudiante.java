@@ -86,7 +86,7 @@ public class Estudiante implements Runnable {
       }else {
         // Se queda en la fiesta pidiendo cerveza hasta que los barriles esten vacios
         while(!this.party.beerSystemEmpty() && getTicket() > 0) {
-          int order = (new Random()).nextInt(this.getTicket()) + 1;
+          int order = (new Random()).nextInt(this.getTicket() + 1) + 1;
           int ticketsConsumed = this.party.consume(order);
 
           // Decrementa el numero de tickets
@@ -102,7 +102,7 @@ public class Estudiante implements Runnable {
           }
 
           // Se añade algo de espera aleatoria para la simulación
-          Thread.sleep((int)(Math.random() * 2500));
+          Thread.sleep((int)(Math.random() * 1800));
         }
       }
 
