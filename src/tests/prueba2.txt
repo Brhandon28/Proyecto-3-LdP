@@ -1,0 +1,5 @@
+A, 8, 0
+B, 4, 0
+C, 2, 0
+Estudiantes, 30
+Proveedores, 3

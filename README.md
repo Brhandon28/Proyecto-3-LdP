@@ -133,12 +133,19 @@ Proveedores, 3
 
 Para una mayor comodidad y automatización del proceso, se ha provisto un archivo Makefile. Este archivo permite compilar y ejecutar el programa de la siguiente manera:
 
+Compilar dentro del directorio src
+
 ```sh
 make
+```
+
+Ejecutar dentro del directorio src
+
+```sh
 make run FILE=tests/prueba1.txt
 ```
 
-Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar
+Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar.
 
 ---
 
