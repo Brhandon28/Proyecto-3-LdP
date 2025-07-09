@@ -109,12 +109,12 @@ Implementa la clase monitor que gestiona y sincroniza el sistema de barriles.
 
 ## Consideraciones
 
-- La entrada debe cumplir exactamente el formato de ejemplo, cualquier alteración al mismo se tomará como falla. 
+- La entrada debe cumplir exactamente el formato de ejemplo, cualquier alteración al mismo se tomará como falla.
 - Los barriles no pueden tener 0 de capacidad.
-- El archivo de entrada debe estar en el mismo directorio src.
 - Si el número de proveedores es menor o igual a cero, los estudiantes se ejecutan mientras haya cerveza en los barriles. Al agotarse, los hilos estudiantes terminan su ejecución.
 - Los proveedores añaden un cantidad de cerveza aleatoria entre 1 y la suma total de las capacidades de los barriles.
 - Los estudiantes pueden tener hasta 30 tickets máximo, garantizando así un enfoque más realista
+
 ---
 
 ## Ejemplo de Formato de Archivo de Entrada
@@ -141,3 +141,31 @@ make run FILE=prueba1.txt
 Donde "FILE" es la variable que se sustituye por el nombre del archivo a usar
 
 ---
+
+## Pruebas
+
+Se cuenta con un directorio "tests" donde están almacenados algunos archivos con casos de prueba válidos e inválidos (donde la entrada es incorrecta). A continuación se muestra la entrada y resultado de 3 de estos casos de prueba, recuerde que la ejecución depende de la aleatoriedad por lo tanto los resultados pueden variar.
+
+### prueba7
+
+Entrada
+
+```
+A, 20, 15
+B, 30, 25
+C, 25, 10
+Estudiantes, 10
+Proveedores, 3
+```
+
+Salida
+
+```sh
+Se termina la fiesta.
+-----------
+ Barriles:
+-----------
+[Barril {Id: 'A', Capacidad: 300, Contenido: 300}, Barril {Id: 'B', Capacidad: 100, Contenido: 100}, Barril {Id: 'C', Capacidad: 200, Contenido: 200}]
+
+El sistema de barriles reporta una perdida por desborde de: 11649
+```
